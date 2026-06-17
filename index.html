@@ -2264,7 +2264,7 @@ footer {
   .hero-visual {
     position: relative;
     width: 100%;
-    height: 320px;
+    height: 360px;
     opacity: 1;
     order: -1;
     margin-bottom: 28px
@@ -2280,6 +2280,13 @@ footer {
 
   .h3d-ai-badge {
     top: 4%
+  }
+
+  .globe-heading {
+    top: 50%;
+    left: 50%;
+    white-space: normal;
+    width: 90%
   }
 
   .hero-content {
@@ -3599,9 +3606,10 @@ function sendQuick(q) {
   function resize(){
     W = canvas.width  = pCanvas.width  = visual.offsetWidth;
     H = canvas.height = pCanvas.height = visual.offsetHeight;
-    cx = W * 0.56;
-    cy = H * 0.59;
-    R  = Math.min(W, H) * 0.33;
+    const isMobile = window.innerWidth <= 900;
+    cx = W * (isMobile ? 0.5 : 0.56);
+    cy = H * (isMobile ? 0.5 : 0.59);
+    R  = Math.min(W, H) * (isMobile ? 0.42 : 0.33);
     initParticles();
   }
 

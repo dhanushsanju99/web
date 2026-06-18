@@ -2467,10 +2467,60 @@ footer {
   flex-shrink: 0;
 }
 
+.mv-toggle-hint {
+  display: none;
+}
+
 /* ── RESPONSIVE: MISSION & VISION ── */
 @media(max-width:900px) {
   .mv-grid {
     grid-template-columns: 1fr;
+  }
+
+  .mv-card {
+    max-height: 215px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: max-height .4s ease;
+  }
+
+  .mv-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+    background: linear-gradient(to bottom, rgba(26, 26, 26, 0), rgba(26, 26, 26, .95));
+    pointer-events: none;
+    transition: opacity .3s;
+  }
+
+  .mv-card.mv-expanded {
+    max-height: 2000px;
+  }
+
+  .mv-card.mv-expanded::after {
+    opacity: 0;
+  }
+
+  .mv-toggle-hint {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    text-align: center;
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .5px;
+    z-index: 1;
+  }
+
+  .mv-card.mv-expanded .mv-toggle-hint {
+    display: none;
   }
 }
   </style>
@@ -2767,7 +2817,7 @@ footer {
         build and every partnership we forge.</p>
     </div>
     <div class="mv-grid">
-      <div class="mv-card fade-up">
+      <div class="mv-card fade-up" onclick="this.classList.toggle('mv-expanded')">
         <div></div>
         <div class="mv-tag">Our Mission</div>
         <h3>Elevating Innovation<br>Across Every Sector</h3>
@@ -2786,8 +2836,9 @@ footer {
           <li>Sustainable, society-benefiting solutions</li>
           <li>Innovation ecosystem where ideas flourish</li>
         </ul>
+        <div class="mv-toggle-hint">Tap to read more ↓</div>
       </div>
-      <div class="mv-card fade-up" style="transition-delay:.15s">
+      <div class="mv-card fade-up" style="transition-delay:.15s" onclick="this.classList.toggle('mv-expanded')">
         <div></div>
         <div class="mv-tag">Our Vision</div>
         <h3>Sustainable Innovation<br>for Future Generations</h3>
@@ -2806,6 +2857,7 @@ footer {
           <li>Technology &amp; sustainability in harmony</li>
           <li>Environmental responsibility in every solution</li>
         </ul>
+        <div class="mv-toggle-hint">Tap to read more ↓</div>
       </div>
     </div>
   </section>

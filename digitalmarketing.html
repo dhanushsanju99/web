@@ -413,15 +413,15 @@
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      background: var(--light-bg);
-      border-top: 1px solid var(--light-border);
-      border-bottom: 1px solid var(--light-border);
+      background: var(--red);
+      border-top: 1px solid var(--red);
+      border-bottom: 1px solid var(--red);
     }
 
     .stat-box {
       padding: 36px 24px;
       text-align: center;
-      border-right: 1px solid var(--light-border);
+      border-right: 1px solid rgba(255, 255, 255, .25);
       transition: background .2s;
     }
 
@@ -430,14 +430,14 @@
     }
 
     .stat-box:hover {
-      background: var(--red-pale);
+      background: rgba(255, 255, 255, .08);
     }
 
     .stat-box .num {
       font-family: var(--font-head);
       font-size: 2.6rem;
       font-weight: 800;
-      color: var(--red);
+      color: #ffffff;
       line-height: 1;
     }
 
@@ -447,7 +447,7 @@
 
     .stat-box .lbl {
       font-size: .82rem;
-      color: var(--light-muted);
+      color: rgba(255, 255, 255, .85);
       margin-top: 8px;
       font-weight: 500;
     }

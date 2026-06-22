@@ -587,41 +587,94 @@ section {
 }
 
 /* ── ABOUT ── */
+#about {
+  position: relative;
+  padding: 0 !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark) !important
+}
+
+.about-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0
+}
+
+.about-video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block
+}
+
+.about-video-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(26,26,26,0.85) 0%,
+    rgba(26,26,26,0.68) 50%,
+    rgba(26,26,26,0.35) 100%
+  );
+  z-index: 1
+}
+
 .about-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  align-items: center
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 110px 5vw 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start
+}
+
+.about-content-inner {
+  max-width: 660px
 }
 
 .about-img-wrap {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden
+  display: none !important
 }
 
-.about-img-wrap img,
-.about-img-wrap video {
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-  display: block;
-  border-radius: 20px
+.about-wrap .sec-label {
+  color: var(--accent)
+}
+
+.about-wrap .sec-title {
+  color: #fff
+}
+
+.about-wrap .sec-sub {
+  color: rgba(255,255,255,.72)
+}
+
+.about-wrap .about-list li {
+  color: rgba(255,255,255,.82);
+  border-bottom: none
+}
+
+.about-wrap .about-list li::before {
+  background: var(--accent)
+}
+
+.about-wrap .btn-outline {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.35) !important
+}
+
+.about-wrap .btn-outline:hover {
+  background: rgba(255,255,255,.1) !important
 }
 
 .about-floating {
-  position: absolute;
-  bottom: 28px;
-  left: 28px;
-  right: 28px;
-  background: rgba(255, 255, 255, .95);
-  backdrop-filter: blur(12px);
-  border-radius: 14px;
-  padding: 20px 22px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .12)
+  display: none
 }
 
 .about-floating-icon {
@@ -2202,8 +2255,12 @@ footer {
     grid-template-columns: 1fr !important
   }
 
-  .about-img-wrap {
-    display: none
+  .about-content-inner {
+    max-width: 100%
+  }
+
+  .about-wrap {
+    padding: 90px 5vw 60px
   }
 
   .offices-grid {
@@ -2714,25 +2771,17 @@ footer {
   </section>
 
   <!-- ABOUT -->
-  <section id="about" style="background:#fff">
-    <div class="about-wrap">
-      <div class="about-img-wrap fade-up">
-        <video autoplay muted loop playsinline
-          style="width:100%;height:520px;object-fit:cover;display:block;border-radius:20px;">
-          <source src="About.mp4" type="video/mp4">
-        </video>
-        
-        
+  <section id="about">
+    <!-- Full-bleed video background -->
+    <div class="about-video-bg">
+      <video autoplay muted loop playsinline>
+        <source src="About.mp4" type="video/mp4">
+      </video>
+    </div>
 
-        <div class="about-floating">
-          <div class="about-floating-icon">🏆</div>
-          <div class="about-floating-text">
-            <strong>Award-Winning Agency</strong>
-            <span>Top-rated in India, USA &amp; UAE</span>
-          </div>
-        </div>
-      </div>
-      <div class="fade-up" style="transition-delay:.15s">
+    <!-- Content overlay -->
+    <div class="about-wrap">
+      <div class="about-content-inner fade-up">
         <span class="sec-label">About Us</span>
         <h2 class="sec-title">Innovative Digital Solutions for<br><em>Your Business Growth</em></h2>
         <p class="sec-sub">Enovexa is a dynamic technology company dedicated to transforming the digital landscape with
@@ -2756,7 +2805,7 @@ footer {
         </ul>
         <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap">
           <a href="start-project.html" class="btn-primary">Start a Project →</a>
-          <a href="#mission" class="btn-outline" style="color:var(--green);border-color:var(--border)">Our Mission →</a>
+          <a href="#mission" class="btn-outline">Our Mission →</a>
         </div>
       </div>
     </div>

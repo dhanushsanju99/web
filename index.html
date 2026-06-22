@@ -211,59 +211,47 @@ nav {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 100px 5vw 60px;
+  padding: 100px 5vw 0;
   overflow: hidden;
   background: var(--dark)
 }
 
-/* ── HERO VIDEO BACKGROUND ── */
-.hero-video-bg {
+.hero-bg-img {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  right: 0;
+  top: 0;
+  width: 55%;
   height: 100%;
   z-index: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center
+  object-fit: cover;
+  opacity: 1
 }
 
-.hero-video-bg video {
-  position: absolute;
-  top: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: bottom center
-}
-
-/* Dark gradient overlay so text stays readable */
-.hero-video-bg::after {
+.hero-bg-img::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(26,26,26,0.88) 0%,
-    rgba(26,26,26,0.72) 40%,
-    rgba(26,26,26,0.30) 100%
-  );
-  z-index: 1
-}
-
-.hero-bg-img {
-  display: none
+  background: linear-gradient(90deg, var(--dark) 0%, transparent 100%)
 }
 
 .hero-overlay {
-  display: none
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 55%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--dark) 20%, rgba(26, 26, 26, 0.3) 100%)
 }
 
 .hero-img-actual {
-  display: none
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 55%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0
 }
 
 .hero-content {
@@ -587,94 +575,40 @@ section {
 }
 
 /* ── ABOUT ── */
-#about {
-  position: relative;
-  padding: 0 !important;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: var(--dark) !important
-}
-
-.about-video-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0
-}
-
-.about-video-bg video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block
-}
-
-.about-video-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(26,26,26,0.85) 0%,
-    rgba(26,26,26,0.68) 50%,
-    rgba(26,26,26,0.35) 100%
-  );
-  z-index: 1
-}
-
 .about-wrap {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  padding: 110px 5vw 80px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start
-}
-
-.about-content-inner {
-  max-width: 660px
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center
 }
 
 .about-img-wrap {
-  display: none !important
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden
 }
 
-.about-wrap .sec-label {
-  color: var(--accent)
-}
-
-.about-wrap .sec-title {
-  color: #fff
-}
-
-.about-wrap .sec-sub {
-  color: rgba(255,255,255,.72)
-}
-
-.about-wrap .about-list li {
-  color: rgba(255,255,255,.82);
-  border-bottom: none
-}
-
-.about-wrap .about-list li::before {
-  background: var(--accent)
-}
-
-.about-wrap .btn-outline {
-  color: #fff !important;
-  border-color: rgba(255,255,255,.35) !important
-}
-
-.about-wrap .btn-outline:hover {
-  background: rgba(255,255,255,.1) !important
+.about-img-wrap img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px
 }
 
 .about-floating {
-  display: none
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  right: 28px;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .12)
 }
 
 .about-floating-icon {
@@ -2255,12 +2189,8 @@ footer {
     grid-template-columns: 1fr !important
   }
 
-  .about-content-inner {
-    max-width: 100%
-  }
-
-  .about-wrap {
-    padding: 90px 5vw 60px
+  .about-img-wrap {
+    display: none
   }
 
   .offices-grid {
@@ -2344,52 +2274,40 @@ footer {
 
   .hero {
     flex-direction: column;
-    padding: 80px 5vw 0;
-    min-height: 100vh;
-    align-items: flex-start;
-    justify-content: center
+    padding: 90px 5vw 40px;
+    min-height: auto
   }
 
-  /* Video fills entire hero as background on mobile */
-  .hero-video-bg {
-    position: absolute;
-    inset: 0;
+  .hero-visual {
+    position: relative;
     width: 100%;
-    height: 100%
+    height: 360px;
+    opacity: 1;
+    order: -1;
+    margin-bottom: 28px
   }
 
-  .hero-video-bg video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    transform: none;
-    min-width: unset;
-    min-height: unset
+  .hero-visual::before {
+    background: linear-gradient(180deg, rgba(26,26,26,0) 55%, var(--dark) 100%)
   }
 
-  /* Stronger overlay on mobile so text is readable */
-  .hero-video-bg::after {
-    background: linear-gradient(
-      180deg,
-      rgba(26,26,26,0.85) 0%,
-      rgba(26,26,26,0.70) 50%,
-      rgba(26,26,26,0.55) 100%
-    )
+  .svc-card {
+    display: none
+  }
+
+  .h3d-ai-badge {
+    top: 4%
+  }
+
+  .globe-heading {
+    top: 50%;
+    left: 50%;
+    white-space: normal;
+    width: 90%
   }
 
   .hero-content {
-    position: relative;
-    z-index: 3;
-    max-width: 100%;
-    padding-bottom: 40px
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 8vw, 2.8rem)
+    max-width: 100%
   }
 
   .hero-why {
@@ -2635,12 +2553,54 @@ footer {
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <div class="hero-visual" id="heroVisual">
+      <!-- Main globe canvas (countries + rotation) -->
+      <canvas id="hero-canvas"></canvas>
 
-    <!-- MEETING VIDEO BACKGROUND -->
-    <div class="hero-video-bg">
-      <video autoplay muted loop playsinline preload="auto">
-        <source src="meeting-hero-2.mp4" type="video/mp4" />
-      </video>
+      <!-- Particle overlay canvas -->
+      <canvas id="particle-canvas"></canvas>
+
+      <!-- Globe glow -->
+      <div class="globe-glow"></div>
+
+      <!-- Globe heading -->
+      <div class="globe-heading">
+        <div class="globe-heading-plain">🌐 Global Tech &amp; Marketing · Leading Company</div>
+        <div class="globe-heading-title">Enovexa Solutions</div>
+        <div class="globe-heading-sub">Innovation, Elevated.</div>
+      </div>
+
+      <!-- Service cards — positioned around the globe, moved by JS parallax -->
+      <div class="svc-card" id="sc0">
+        <div class="sc-title">Web Development</div>
+        <div class="sc-sub">React · Next.js · Laravel</div>
+        <div class="sc-line"></div>
+      </div>
+      <div class="svc-card" id="sc1">
+        <div class="sc-title">Digital Marketing</div>
+        <div class="sc-sub">SEO · PPC · Social Media</div>
+        <div class="sc-line"></div>
+      </div>
+      <div class="svc-card" id="sc2">
+        <div class="sc-title">AI-Driven Marketing</div>
+        <div class="sc-sub">ML · Automation · Analytics</div>
+        <div class="sc-line"></div>
+      </div>
+      <div class="svc-card" id="sc3">
+        <div class="sc-title">Mobile Apps</div>
+        <div class="sc-sub">Flutter · iOS · Android</div>
+        <div class="sc-line"></div>
+      </div>
+      <div class="svc-card" id="sc4">
+        <div class="sc-title">Custom Software</div>
+        <div class="sc-sub">CRM · ERP · SaaS</div>
+        <div class="sc-line"></div>
+      </div>
+      <div class="svc-card" id="sc5">
+        <div class="sc-title">Event Management</div>
+        <div class="sc-sub">Corporate · Virtual · Live</div>
+        <div class="sc-line"></div>
+      </div>
     </div>
 
 
@@ -2771,17 +2731,23 @@ footer {
   </section>
 
   <!-- ABOUT -->
-  <section id="about">
-    <!-- Full-bleed video background -->
-    <div class="about-video-bg">
-      <video autoplay muted loop playsinline>
-        <source src="About.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <!-- Content overlay -->
+  <section id="about" style="background:#fff">
     <div class="about-wrap">
-      <div class="about-content-inner fade-up">
+      <div class="about-img-wrap fade-up">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=90" alt="Enovexa Team"
+          loading="lazy">
+        
+        
+
+        <div class="about-floating">
+          <div class="about-floating-icon">🏆</div>
+          <div class="about-floating-text">
+            <strong>Award-Winning Agency</strong>
+            <span>Top-rated in India, USA &amp; UAE</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:.15s">
         <span class="sec-label">About Us</span>
         <h2 class="sec-title">Innovative Digital Solutions for<br><em>Your Business Growth</em></h2>
         <p class="sec-sub">Enovexa is a dynamic technology company dedicated to transforming the digital landscape with
@@ -2805,7 +2771,7 @@ footer {
         </ul>
         <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap">
           <a href="start-project.html" class="btn-primary">Start a Project →</a>
-          <a href="#mission" class="btn-outline">Our Mission →</a>
+          <a href="#mission" class="btn-outline" style="color:var(--green);border-color:var(--border)">Our Mission →</a>
         </div>
       </div>
     </div>
@@ -2953,7 +2919,7 @@ footer {
   <!-- STATS BAND -->
   <div class="stats-band">
     <div class="stats-band-item">
-      <div class="stats-band-num">1000<span>+</span></div>
+      <div class="stats-band-num">1500<span>+</span></div>
       <div class="stats-band-lbl">Worldwide Clients</div>
     </div>
     <div class="stats-band-item">
@@ -2965,7 +2931,7 @@ footer {
       <div class="stats-band-lbl">Avg. Marketing ROI</div>
     </div>
     <div class="stats-band-item">
-      <div class="stats-band-num">100<span>+</span></div>
+      <div class="stats-band-num">20<span>+</span></div>
       <div class="stats-band-lbl">Projects Delivered</div>
     </div>
   </div>

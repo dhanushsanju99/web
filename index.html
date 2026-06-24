@@ -1318,7 +1318,8 @@ footer {
   right: 28px;
   z-index: 9998;
   width: 375px;
-  max-height: 560px;
+  height: 560px;
+  max-height: calc(100vh - 120px);
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -1351,7 +1352,8 @@ footer {
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, .1)
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  flex-shrink: 0
 }
 
 .chat-avatar {
@@ -1412,7 +1414,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 280px;
+  min-height: 0;
   background: #f9f9f9
 }
 
@@ -1463,7 +1465,8 @@ footer {
   gap: 6px;
   flex-wrap: wrap;
   border-top: 1px solid var(--border);
-  background: #fff
+  background: #fff;
+  flex-shrink: 0
 }
 
 .qchip {
@@ -1490,7 +1493,8 @@ footer {
   border-top: 1px solid var(--border);
   display: flex;
   gap: 7px;
-  background: #fff
+  background: #fff;
+  flex-shrink: 0
 }
 
 .chat-input-row input {
@@ -2342,35 +2346,9 @@ footer {
   }
 
   #chat-window {
-    width: 100vw;
-    left: 0;
-    right: 0;
-    bottom: 80px;
-    top: auto;
-    max-height: 55vh;
-    border-radius: 16px 16px 0 0;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-  }
-
-  #chat-window.keyboard-open {
-    position: fixed;
-    top: 0 !important;
-    bottom: auto !important;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    max-height: 50vh;
-    border-radius: 0 0 16px 16px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-  }
-
-  .chat-msgs {
-    min-height: 0;
-    flex: 1;
+    width: calc(100vw - 32px);
+    right: 16px;
+    bottom: 90px
   }
 }
 
@@ -3500,52 +3478,6 @@ function toggleChat() {
   chatOpen = !chatOpen;
   document.getElementById('chat-window').classList.toggle('open', chatOpen);
 }
-
-// Mobile keyboard fix — top half chat, bottom half keyboard
-(function() {
-  if (window.innerWidth > 768) return;
-  const chatWin = document.getElementById('chat-window');
-  if (!chatWin) return;
-
-  function applyKeyboardFix() {
-    if (window.innerWidth > 768) return;
-    if (!chatOpen) return;
-    if (window.visualViewport) {
-      const vvh = window.visualViewport.height;
-      const wh  = window.innerHeight;
-      if (vvh < wh - 100) {
-        // keyboard is open — snap chat to top half
-        chatWin.classList.add('keyboard-open');
-      } else {
-        chatWin.classList.remove('keyboard-open');
-      }
-    }
-  }
-
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', applyKeyboardFix);
-    window.visualViewport.addEventListener('scroll', applyKeyboardFix);
-  }
-
-  // Fallback for browsers without visualViewport
-  const chatIn = document.getElementById('chat-in');
-  if (chatIn) {
-    chatIn.addEventListener('focus', function() {
-      if (window.innerWidth > 768) return;
-      setTimeout(function() {
-        if (window.visualViewport && window.visualViewport.height < window.innerHeight - 100) {
-          chatWin.classList.add('keyboard-open');
-        } else {
-          chatWin.classList.add('keyboard-open'); // add anyway as fallback
-        }
-      }, 400);
-    });
-    chatIn.addEventListener('blur', function() {
-      if (window.innerWidth > 768) return;
-      setTimeout(function() { chatWin.classList.remove('keyboard-open'); }, 200);
-    });
-  }
-})();
 
 function appendMsg(text, who) {
   const d = document.createElement('div');

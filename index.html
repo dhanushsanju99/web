@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development & IT Company in Kerala, India | Enovexa Solutions</title>
+  <meta name="description" content="Enovexa Solutions is a Kerala-based IT company serving clients across India & worldwide. Web, app, software & digital marketing services." />
   <title>Enovexa Solutions — Innovation, Elevated</title>
   <!-- Google Fonts -->
   <link
@@ -1050,7 +1052,7 @@ section {
 /* ── STATS BAND ── */
 .stats-band {
   background: var(--red);
-  padding: 60px 5vw;
+  padding: 32px 5vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px
@@ -1058,7 +1060,7 @@ section {
 
 .stats-band-item {
   padding: 0 32px;
-  border-right: 1px solid rgba(255, 255, 255, .2);
+  
   text-align: center
 }
 
@@ -1317,7 +1319,6 @@ footer {
   z-index: 9998;
   width: 375px;
   max-height: 560px;
-  height:auto;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -2342,11 +2343,23 @@ footer {
 
   #chat-window {
     width: calc(100vw - 32px);
-    right: 16px;
     left: 16px;
+    right: 16px;
     bottom: 90px;
-    max-height: calc(100dvh - 160px);
+    max-height: calc(100dvh - 110px);
     top: auto;
+    border-radius: 16px;
+  }
+
+  #chat-window.keyboard-open {
+    bottom: auto;
+    top: 8px;
+    max-height: calc(100dvh - 20px);
+  }
+
+  .chat-msgs {
+    min-height: 0;
+    flex: 1;
   }
 }
 
@@ -3090,7 +3103,7 @@ footer {
         <div style="margin-top:16px;display:flex;gap:8px">
           <a class="social-btn" href="https://www.linkedin.com/company/enovexa/posts/?feedView=all" title="LinkedIn">in</a>
           
-          <a class="social-btn" href="https://www.instagram.com/enovexa24" title="Instagram">IG</a>
+          <a class="social-btn" href="https://www.instagram.com/enovexaofficial/?hl=en" title="Instagram">IG</a>
           <a class="social-btn" href="https://www.facebook.com/people/Enovexa/61568164800135/" title="Facebook">f</a>
         </div>
       </div>
@@ -3476,6 +3489,41 @@ function toggleChat() {
   chatOpen = !chatOpen;
   document.getElementById('chat-window').classList.toggle('open', chatOpen);
 }
+
+// Mobile keyboard fix — reposition chat when keyboard opens/closes
+(function() {
+  const chatWin = document.getElementById('chat-window');
+  const chatIn  = document.getElementById('chat-in');
+  if (!chatIn || !chatWin) return;
+
+  function isMobile() { return window.innerWidth <= 768; }
+
+  chatIn.addEventListener('focus', function() {
+    if (!isMobile()) return;
+    setTimeout(function() {
+      chatWin.classList.add('keyboard-open');
+      chatWin.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  });
+
+  chatIn.addEventListener('blur', function() {
+    if (!isMobile()) return;
+    setTimeout(function() {
+      chatWin.classList.remove('keyboard-open');
+    }, 100);
+  });
+
+  // Also handle visualViewport resize (most reliable on iOS/Android)
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', function() {
+      if (!isMobile() || !chatOpen) return;
+      const vvHeight = window.visualViewport.height;
+      const fullHeight = window.innerHeight;
+      const keyboardOpen = vvHeight < fullHeight - 100;
+      chatWin.classList.toggle('keyboard-open', keyboardOpen);
+    });
+  }
+})();
 
 function appendMsg(text, who) {
   const d = document.createElement('div');

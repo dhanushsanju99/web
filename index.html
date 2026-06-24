@@ -1317,6 +1317,7 @@ footer {
   z-index: 9998;
   width: 375px;
   max-height: 560px;
+  height:auto;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -2342,7 +2343,10 @@ footer {
   #chat-window {
     width: calc(100vw - 32px);
     right: 16px;
-    bottom: 90px
+    left: 16px;
+    bottom: 90px;
+    max-height: calc(100dvh - 160px);
+    top: auto;
   }
 }
 
